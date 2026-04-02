@@ -1,1 +1,26 @@
-<p>events works!</p>
+<section class="space-y-4 p-4">
+  <h2 class="text-xl font-semibold">Eventy</h2>
+
+  @if (store.isLoading()) {
+    <p>Ladowanie eventow...</p>
+  } @else if (store.hasError()) {
+    <div class="space-y-2">
+      <p class="text-red-600">Error</p>
+      <button (click)="store.loadEvents()" class="rounded border px-3 py-1" type="button">
+        Sprobuj ponownie
+      </button>
+    </div>
+  } @else if (!store.events().length) {
+    <p>Brak eventow.</p>
+  } @else {
+    <ul class="space-y-3">
+      @for (event of store.events(); track event.id ?? $index) {
+        <li class="rounded border p-3">
+          <h3 class="font-medium">{{ event.title }}</h3>
+          <p class="text-sm text-gray-600">{{ event.description }}</p>
+          <p class="mt-2 text-sm">Sloty: {{ event.slots?.length }}</p>
+        </li>
+      }
+    </ul>
+  }
+</section>

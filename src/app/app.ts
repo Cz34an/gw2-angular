@@ -1,5 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { EventControllerService, EventResponseDto } from './core/api';
+import { Component, signal } from '@angular/core';
 import { Sidebar } from './components/sidebar/sidebar';
 import { RouterOutlet } from '@angular/router';
 
@@ -9,15 +8,6 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('angular-gw2');
-  protected readonly events = signal<EventResponseDto[]>([]);
-  private readonly eventService = inject(EventControllerService);
-
-  public ngOnInit(): void {
-    this.eventService.getEvents().subscribe({
-      next: (data) => this.events.set(data),
-      error: (err) => console.error(err),
-    });
-  }
 }
