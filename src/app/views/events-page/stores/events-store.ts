@@ -18,7 +18,6 @@ const initialState: EventsState = {
 };
 
 export const EventsStore = signalStore(
-  { providedIn: 'root' },
   withState(initialState),
   withMethods((store, eventsService = inject(EventControllerService)) => ({
     loadEvents: rxMethod<void>(

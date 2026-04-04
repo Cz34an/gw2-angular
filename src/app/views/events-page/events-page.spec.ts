@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { EventControllerService } from '../../core/api';
+import { EventControllerService } from '@/api';
 import { EventsPage } from './events-page';
 
 describe('EventsPage', () => {

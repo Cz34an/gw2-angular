@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './views/dashboard/dashboard';
-import { EventsPage } from './views/events/events-page';
+import { DashboardPage } from './views/dashboard-page/dashboard-page';
+import { EventsPage } from './views/events-page/events-page';
 
 export const routes: Routes = [
-  { path: '', component: Dashboard },
+  { path: '', component: DashboardPage },
   { path: 'events', component: EventsPage },
 ];
