@@ -1,0 +1,11 @@
+:host(.raid) {
+  --ng-icon__color: var(--raid);
+  --input: var(--raid);
+  --primary: var(--raid);
+}
+
+:host(.fractal) {
+  --ng-icon__color: var(--fractal);
+  --input: var(--fractal);
+  --primary: var(--fractal);
+}

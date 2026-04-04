@@ -21,6 +21,8 @@ import { CreateEventDto } from '../model/createEventDto';
 // @ts-ignore
 import { EventResponseDto } from '../model/eventResponseDto';
 // @ts-ignore
+import { EventResponseShortDto } from '../model/eventResponseShortDto';
+// @ts-ignore
 import { EventSignupDto } from '../model/eventSignupDto';
 
 // @ts-ignore
@@ -289,9 +291,9 @@ export class EventControllerService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getEvents(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<EventResponseDto>>;
-    public getEvents(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<EventResponseDto>>>;
-    public getEvents(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<EventResponseDto>>>;
+    public getEvents(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<EventResponseShortDto>>;
+    public getEvents(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<EventResponseShortDto>>>;
+    public getEvents(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<EventResponseShortDto>>>;
     public getEvents(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
@@ -324,7 +326,7 @@ export class EventControllerService extends BaseService {
 
         let localVarPath = `/api/events`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<Array<EventResponseDto>>('get', `${basePath}${localVarPath}`,
+        return this.httpClient.request<Array<EventResponseShortDto>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,

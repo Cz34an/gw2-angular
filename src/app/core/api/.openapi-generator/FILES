@@ -13,13 +13,14 @@ index.ts
 model/categoryDto.ts
 model/createEventDto.ts
 model/eventResponseDto.ts
+model/eventResponseShortDto.ts
 model/eventSignupDto.ts
 model/models.ts
 model/roleDto.ts
 model/slotDto.ts
 model/slotRequest.ts
 model/user.ts
-model/userDto.ts
+model/userEventDto.ts
 param.ts
 provide-api.ts
 query.params.ts

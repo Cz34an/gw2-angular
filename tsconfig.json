@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -13,6 +14,8 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
+      "@/api": ["src/app/core/api"],
+      "@/api/*": ["src/app/core/api/*"],
       "@spartan-ng/helm/sidebar": ["./src/app/ui/sidebar/src/index.ts"],
       "@spartan-ng/helm/utils": ["./src/app/ui/utils/src/index.ts"],
       "@spartan-ng/helm/button": ["./src/app/ui/button/src/index.ts"],
@@ -22,7 +25,10 @@
       "@spartan-ng/helm/sheet": ["./src/app/ui/sheet/src/index.ts"],
       "@spartan-ng/helm/skeleton": ["./src/app/ui/skeleton/src/index.ts"],
       "@spartan-ng/helm/tooltip": ["./src/app/ui/tooltip/src/index.ts"],
-      "@spartan-ng/helm/card": ["./src/app/ui/card/src/index.ts"]
+      "@spartan-ng/helm/card": ["./src/app/ui/card/src/index.ts"],
+      "@spartan-ng/helm/avatar": ["./src/app/ui/avatar/src/index.ts"],
+      "@spartan-ng/helm/progress": ["./src/app/ui/progress/src/index.ts"],
+      "@spartan-ng/helm/badge": ["./src/app/ui/badge/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

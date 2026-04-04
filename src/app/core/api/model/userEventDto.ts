@@ -9,8 +9,10 @@
  */
 
 
-export interface SlotRequest { 
-    roleId: number;
-    count: number;
+export interface UserEventDto { 
+    id: number;
+    username: string;
+    avatarUrl?: string;
+    gw2AccountName?: string;
 }
 

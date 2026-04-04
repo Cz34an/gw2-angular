@@ -8,13 +8,13 @@
  * Do not edit the class manually.
  */
 import { RoleDto } from './roleDto';
-import { UserDto } from './userDto';
+import { UserEventDto } from './userEventDto';
 
 
 export interface SlotDto { 
-    id?: number;
-    role?: RoleDto;
-    player?: UserDto;
+    id: number;
+    role: RoleDto;
+    player?: UserEventDto;
     flexRoles?: Array<RoleDto>;
     blocked?: boolean;
 }

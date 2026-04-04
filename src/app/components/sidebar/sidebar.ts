@@ -17,6 +17,6 @@ type SidebarItem = {
 export class Sidebar {
   protected readonly items: SidebarItem[] = [
     { label: 'Dashboard', path: '/', exact: true },
-    { label: 'Events', path: '/events' },
+    { label: 'EventsPage', path: '/events' },
   ];
 }

@@ -1,12 +1,12 @@
 import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
-import { EventControllerService, EventResponseDto } from '../../../core/api';
+import { EventControllerService, EventResponseShortDto } from '@/api';
 import { inject } from '@angular/core';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 
 type EventsState = {
-  events: EventResponseDto[];
+  events: EventResponseShortDto[];
   isLoading: boolean;
   hasError: boolean;
 };
@@ -27,10 +27,7 @@ export const EventsStore = signalStore(
         switchMap(() => {
           return eventsService.getEvents().pipe(
             tapResponse({
-              next: (events) => {
-                console.log(events);
-                patchState(store, { events: events, isLoading: false });
-              },
+              next: (events) => patchState(store, { events: events, isLoading: false }),
               error: () => patchState(store, { isLoading: false, hasError: true }),
             }),
           );

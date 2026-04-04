@@ -10,7 +10,7 @@
 
 
 export interface RoleDto { 
-    id?: number;
-    name?: string;
+    id: number;
+    name: string;
 }
 

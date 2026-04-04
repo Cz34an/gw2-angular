@@ -7,19 +7,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { CategoryDto } from './categoryDto';
-import { SlotDto } from './slotDto';
 import { UserEventDto } from './userEventDto';
 
 
-export interface EventResponseDto { 
+export interface EventResponseShortDto { 
     id: number;
     title: string;
-    description?: string;
     startTime: string;
     endTime: string;
-    category: CategoryDto;
+    category: string;
     organizer: UserEventDto;
-    slots: Array<SlotDto>;
+    occupiedSlotsSize: number;
+    slotsSize: number;
+    neededRoles?: Array<string>;
 }
 

@@ -1,0 +1,53 @@
+@let e = event();
+
+<div hlmCardHeader>
+  <div class="flex items-center gap-4">
+    <ng-icon class="grow-0 shrink-0" hlm name="lucideSwords" size="lg" />
+    <div>
+      <h2 [title]="e.title" class="text-xl font-black line-clamp-2">{{ e.title }}</h2>
+      <div class="text-sm">{{ e.category }}</div>
+    </div>
+  </div>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      @let o = e.organizer;
+
+      <hlm-avatar size="sm">
+        <img [src]="o.avatarUrl" hlmAvatarImage />
+        <span hlmAvatarFallback>{{ o.username.charAt(0) | uppercase }}</span>
+      </hlm-avatar>
+      <span class="text-xs">{{ o.username }}</span>
+    </div>
+    <div class="flex flex-row gap-2">
+      <div class="flex items-center gap-1">
+        <ng-icon hlm name="lucideCalendar" size="sm" />
+        <span class="text-xs">{{ e.startTime | date:'dd.MM, HH:mm' }}</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <ng-icon hlm name="lucideTimer" size="sm" />
+        <span class="text-xs">{{ e.startTime | duration:e.endTime }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex-1 flex " hlmCardContent>
+  <div class="flex flex-col gap-2 w-full">
+    <div class="flex items-center gap-1">
+      <ng-icon hlm name="lucideUsers" size="sm" />
+      <span>{{ e.occupiedSlotsSize }} / {{ e.slotsSize }}</span>
+    </div>
+    <hlm-progress [value]="occupancyPercentage()">
+      <hlm-progress-indicator />
+    </hlm-progress>
+    <div class="flex flex-wrap items-center gap-1.5 mt-2">
+      @for (role of e.neededRoles; track role) {
+        <span class="badge" hlmBadge>{{ role }}</span>
+      }
+    </div>
+  </div>
+</div>
+<p hlmCardFooter>
+  <button class="w-full" hlmBtn variant="outline">
+    Przejdź do wydarzenia
+  </button>
+</p>

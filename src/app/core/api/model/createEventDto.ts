@@ -11,11 +11,11 @@ import { SlotRequest } from './slotRequest';
 
 
 export interface CreateEventDto { 
-    title?: string;
+    title: string;
     description?: string;
-    startTime?: string;
-    endTime?: string;
-    categoryId?: number;
-    slots?: Array<SlotRequest>;
+    startTime: string;
+    endTime: string;
+    categoryId: number;
+    slots: Array<SlotRequest>;
 }
 

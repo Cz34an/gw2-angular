@@ -2,15 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { EventControllerService } from '../../core/api';
-import { Events } from './events';
+import { EventsPage } from './events-page';
 
-describe('Events', () => {
-  let component: Events;
-  let fixture: ComponentFixture<Events>;
+describe('EventsPage', () => {
+  let component: EventsPage;
+  let fixture: ComponentFixture<EventsPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Events],
+      imports: [EventsPage],
       providers: [
         {
           provide: EventControllerService,
@@ -21,7 +21,7 @@ describe('Events', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Events);
+    fixture = TestBed.createComponent(EventsPage);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

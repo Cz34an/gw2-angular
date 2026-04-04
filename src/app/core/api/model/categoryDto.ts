@@ -10,7 +10,7 @@
 
 
 export interface CategoryDto { 
-    id?: number;
-    name?: string;
+    id: number;
+    name: string;
 }
 
