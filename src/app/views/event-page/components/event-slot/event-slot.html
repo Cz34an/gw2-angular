@@ -1,0 +1,36 @@
+@let s = slot();
+@let b = s.requiredBuild;
+
+@switch (slotType()) {
+  @case ('empty') {
+    <div class="border bg-card rounded-md w-10 h-10 flex items-center justify-center">
+      <ng-icon class="icon" hlm name="lucidePlus" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <span class="text-sm line-clamp-1 break-all">Zapisz się!</span>
+      <app-build-badges [build]="b" />
+    </div>
+  }
+  @case ('blocked') {
+    <div class="border bg-card rounded-md w-10 h-10 flex items-center justify-center">
+      <ng-icon class="icon" hlm name="lucideLockKeyhole" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <span class="text-sm line-clamp-1 break-all text-disabled">Zablokowane przez organizatora</span>
+      <app-build-badges [build]="b" />
+    </div>
+  }
+  @case ('occupied') {
+    @let p = s.player!;
+    @let a = s.actualBuild;
+
+    <hlm-avatar size="lg">
+      <img [src]="p?.avatarUrl" hlmAvatarImage />
+      <span hlmAvatarFallback>{{ getName().charAt(0) | uppercase }}</span>
+    </hlm-avatar>
+    <div class="flex flex-col gap-1">
+      <span [title]="getName()" class="text-sm line-clamp-1 break-all">{{ getName() }}</span>
+      <app-build-badges [build]="a" />
+    </div>
+  }
+}

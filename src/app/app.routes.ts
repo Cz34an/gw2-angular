@@ -1,8 +1,17 @@
 import { Routes } from '@angular/router';
-import { DashboardPage } from './views/dashboard-page/dashboard-page';
-import { EventsPage } from './views/events-page/events-page';
 
 export const routes: Routes = [
-  { path: '', component: DashboardPage },
-  { path: 'events', component: EventsPage },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./views/dashboard-page/dashboard-page').then((m) => m.DashboardPage),
+  },
+  {
+    path: 'events',
+    loadComponent: () => import('./views/events-page/events-page').then((m) => m.EventsPage),
+  },
+  {
+    path: 'events/:id',
+    loadComponent: () => import('./views/event-page/event-page').then((m) => m.EventPage),
+  },
 ];

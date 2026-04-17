@@ -7,15 +7,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RoleDto } from './roleDto';
+import { BuildDto } from './buildDto';
 import { UserEventDto } from './userEventDto';
 
 
 export interface SlotDto { 
     id: number;
-    role: RoleDto;
+    subgroup: number;
+    requiredBuild: BuildDto;
+    actualBuild: BuildDto;
     player?: UserEventDto;
-    flexRoles?: Array<RoleDto>;
+    flexBuilds?: Array<BuildDto>;
     blocked?: boolean;
 }
 

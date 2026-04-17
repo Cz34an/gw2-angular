@@ -7,10 +7,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { BuildDto } from './buildDto';
 
 
 export interface EventSignupDto { 
-    primaryRoleId: number;
-    flexRoleIds?: Array<number>;
+    targetSlotId: number;
+    primaryBuild: BuildDto;
+    flexBuilds?: Array<BuildDto>;
 }
 

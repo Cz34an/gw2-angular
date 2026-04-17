@@ -7,6 +7,14 @@
 
 @import '@spartan-ng/brain/hlm-tailwind-preset.css';
 
+@theme {
+  --text-tiny: 0.625rem;
+  --color-raid: var(--raid);
+  --color-fractal: var(--fractal);
+  --color-disabled: var(--disabled-icon);
+  --color-card-hover: var(--card-hover);
+}
+
 :root {
   color-scheme: light;
 
@@ -17,6 +25,7 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
+  --card-hover: oklch(0.24 0.015 250);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -42,6 +51,7 @@
   --sidebar-ring: oklch(0.708 0 0);
   --raid: oklch(0.7 0.1517 83.17);
   --fractal: oklch(0.7 0.1739 235.64);
+  --disabled-icon: oklch(0.7118 0.0129 286.07);
 }
 
 :root.dark {
@@ -50,6 +60,7 @@
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
+  --card-hover: oklch(0.225 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -75,6 +86,7 @@
   --sidebar-ring: oklch(0.556 0 0);
   --raid: oklch(0.7 0.1517 83.17);
   --fractal: oklch(0.7 0.1739 235.64);
+  --disabled-icon: oklch(0.7118 0.0129 286.07);
 }
 
 @layer base {

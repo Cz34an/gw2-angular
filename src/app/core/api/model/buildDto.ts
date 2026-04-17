@@ -9,14 +9,12 @@
  */
 
 
-export interface SlotRequest { 
-    subgroup: number;
-    requiredBaseRole: SlotRequest.RequiredBaseRoleEnum;
-    requiredSubRoles?: Array<SlotRequest.RequiredSubRolesEnum>;
-    count: number;
+export interface BuildDto { 
+    baseRole: BuildDto.BaseRoleEnum;
+    subRoles?: Array<BuildDto.SubRolesEnum>;
 }
-export namespace SlotRequest {
-    export const RequiredBaseRoleEnum = {
+export namespace BuildDto {
+    export const BaseRoleEnum = {
         Dps: 'DPS',
         HealAlac: 'HEAL_ALAC',
         HealQuick: 'HEAL_QUICK',
@@ -25,15 +23,15 @@ export namespace SlotRequest {
         GenericHeal: 'GENERIC_HEAL',
         GenericBoonDps: 'GENERIC_BOON_DPS'
     } as const;
-    export type RequiredBaseRoleEnum = typeof RequiredBaseRoleEnum[keyof typeof RequiredBaseRoleEnum];
-    export const RequiredSubRolesEnum = {
+    export type BaseRoleEnum = typeof BaseRoleEnum[keyof typeof BaseRoleEnum];
+    export const SubRolesEnum = {
         Portal: 'PORTAL',
         Kite: 'KITE',
         Lamp: 'LAMP',
         Pylon: 'PYLON',
         Handkite: 'HANDKITE'
     } as const;
-    export type RequiredSubRolesEnum = typeof RequiredSubRolesEnum[keyof typeof RequiredSubRolesEnum];
+    export type SubRolesEnum = typeof SubRolesEnum[keyof typeof SubRolesEnum];
 }
 
 

@@ -1,0 +1,6 @@
+@let b = build();
+
+<span class="text-[10px]" hlmBadge>{{ b.baseRole }}</span>
+@for (subRole of b.subRoles; track subRole) {
+  <span class="text-[10px]" hlmBadge variant="outline">{{ subRole }}</span>
+}
