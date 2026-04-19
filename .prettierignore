@@ -1,0 +1,8 @@
+# Ignoruj komponenty z biblioteki UI
+src/app/ui/
+src/app/core/api
+
+# Standardowe wykluczenia (dla pewności)
+node_modules/
+dist/
+.angular/

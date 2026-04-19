@@ -1,25 +1,37 @@
-<hlm-dialog (closed)="closeDialog()" [state]="dialogState()">
-  <hlm-dialog-content *hlmDialogPortal="let ctx">
+<hlm-dialog
+  (closed)="closeDialog()"
+  [state]="dialogState()"
+>
+  <hlm-dialog-content *hlmDialogPortal>
     @let s = store.selectedFreeSlot();
     @if (s) {
       <hlm-dialog-header>
         <h3 hlmDialogTitle>Wybierz flex role</h3>
-        <p hlmDialogDescription>
-          Wybierz role na których możesz zagrać.
-        </p>
+        <p hlmDialogDescription>Wybierz role na których możesz zagrać.</p>
       </hlm-dialog-header>
       <div class="flex flex-col gap-1">
         <h4>Wybrana rola</h4>
-        <app-build-badges [build]="s.requiredBuild" class="mb-1" />
+        <app-build-badges
+          [build]="s.requiredBuild"
+          class="mb-1"
+        />
         @if (isGenericBoonSelected()) {
           <h4>Boon</h4>
           <div class="flex flex-row items-center gap-1">
-            <button [disabled]="isAlacrityEffectiveBuild()" aria-label="Alacrity" hlmToggle
-                    size="sm">
+            <button
+              [disabled]="isAlacrityEffectiveBuild()"
+              aria-label="Alacrity"
+              hlmToggle
+              size="sm"
+            >
               A
             </button>
-            <button [disabled]="isQuicknessEffectiveBuild()" aria-label="Quickness" hlmToggle
-                    size="sm">
+            <button
+              [disabled]="isQuicknessEffectiveBuild()"
+              aria-label="Quickness"
+              hlmToggle
+              size="sm"
+            >
               Q
             </button>
           </div>
@@ -28,7 +40,10 @@
         <hlm-select-multiple [(value)]="flexBuilds">
           <hlm-select-trigger class="w-full">
             <hlm-select-placeholder>Wybierz role flex</hlm-select-placeholder>
-            <ng-template hlmSelectValues let-values>
+            <ng-template
+              hlmSelectValues
+              let-values
+            >
               <hlm-select-values-content>
                 <app-build-badges [build]="values[0]" />
                 @if (values.length > 1) {
@@ -49,8 +64,20 @@
         </hlm-select-multiple>
       </div>
       <hlm-dialog-footer>
-        <button hlmBtn hlmDialogClose variant="outline">Anuluj</button>
-        <button (click)="onSignIn()" hlmBtn type="submit">Zapisz się</button>
+        <button
+          hlmBtn
+          hlmDialogClose
+          variant="outline"
+        >
+          Anuluj
+        </button>
+        <button
+          (click)="onSignIn()"
+          hlmBtn
+          type="submit"
+        >
+          Zapisz się
+        </button>
       </hlm-dialog-footer>
     }
   </hlm-dialog-content>

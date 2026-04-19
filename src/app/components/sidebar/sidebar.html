@@ -19,12 +19,8 @@
       </ul>
     </div>
     <div hlmSidebarFooter>
-
       @if (authStore.currentUser()) {
-        <div>
-          Logged user: {{ authStore.currentUser()?.username }}
-        </div>
-
+        <div>Logged user: {{ authStore.currentUser()?.username }}</div>
       }
       <app-fake-login />
     </div>

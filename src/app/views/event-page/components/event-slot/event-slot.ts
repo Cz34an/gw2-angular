@@ -1,26 +1,38 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { SlotDto } from '@/api';
+import { UpperCasePipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLockKeyhole, lucideMinus, lucidePlus } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
-import { UpperCasePipe } from '@angular/common';
-import { EventDetailsStore } from '../../stores/event-details.store';
-import { BuildBadges } from '../build-badges/build-badges';
+import {
+  HlmAvatar,
+  HlmAvatarFallback,
+  HlmAvatarImage,
+} from '@spartan-ng/helm/avatar';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { CURRENT_USER } from '@/core/tokens/auth-token';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+
+import { SlotDto } from '@/api';
+import { CURRENT_USER } from '@/core/tokens';
+
+import { EventDetailsStore } from '../../stores';
+import { BuildBadges } from '../build-badges';
 
 @Component({
   selector: 'app-event-slot',
   imports: [
-    HlmIcon,
-    NgIcon,
+    BuildBadges,
     HlmAvatar,
     HlmAvatarFallback,
     HlmAvatarImage,
-    UpperCasePipe,
-    BuildBadges,
     HlmButtonImports,
+    HlmIcon,
+    NgIcon,
+    UpperCasePipe,
   ],
   templateUrl: './event-slot.html',
   providers: [provideIcons({ lucidePlus, lucideLockKeyhole, lucideMinus })],
@@ -36,9 +48,17 @@ import { CURRENT_USER } from '@/core/tokens/auth-token';
   },
 })
 export class EventSlot {
+  protected readonly store = inject(EventDetailsStore);
+  private readonly currentUser = inject(CURRENT_USER);
+
   public readonly slot = input.required<SlotDto>();
-  protected readonly isEmpty = computed(() => !this.slot().player && !this.slot().blocked);
+
+  protected readonly isEmpty = computed(
+    () => !this.slot().player && !this.slot().blocked,
+  );
+
   protected readonly isBlocked = computed(() => this.slot().blocked);
+
   protected readonly slotType = computed(() => {
     if (this.isBlocked()) {
       return 'blocked';
@@ -48,6 +68,7 @@ export class EventSlot {
       return 'occupied';
     }
   });
+
   protected readonly getName = computed(() => {
     const { player } = this.slot();
 
@@ -57,10 +78,8 @@ export class EventSlot {
 
     return player.gw2AccountName || player.username;
   });
-  protected readonly store = inject(EventDetailsStore);
-  private readonly currentUser = inject(CURRENT_USER);
 
-  protected isOccupiedByLoggedUser = computed(() => {
+  protected readonly isOccupiedByLoggedUser = computed(() => {
     const currentUser = this.currentUser();
     const player = this.slot().player;
 
@@ -71,7 +90,7 @@ export class EventSlot {
     return player.id === currentUser.sub;
   });
 
-  protected onSlotClick() {
+  protected onSlotClick(): void {
     if (this.isEmpty()) {
       this.store.setSelectedFreeSlot(this.slot());
     }

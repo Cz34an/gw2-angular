@@ -1,13 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { Sidebar } from './components/sidebar/sidebar';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { Sidebar } from './components/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',
-  imports: [Sidebar, RouterOutlet],
+  imports: [RouterOutlet, Sidebar],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('angular-gw2');
-}
+export class App {}

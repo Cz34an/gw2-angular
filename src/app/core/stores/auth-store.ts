@@ -1,3 +1,5 @@
+import { computed, effect, inject } from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
@@ -7,16 +9,15 @@ import {
   withState,
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap } from 'rxjs';
-import { computed, effect, inject } from '@angular/core';
-import { AuthControllerService } from '@/api';
-import { tapResponse } from '@ngrx/operators';
 import { jwtDecode } from 'jwt-decode';
-import { CurrentUser, RawJwtPayload } from '@/core/models/current-user';
+import { pipe, switchMap } from 'rxjs';
 
-type AuthState = {
+import { AuthControllerService } from '@/api';
+import { CurrentUserModel, RawJwtPayload } from '@/core/models';
+
+interface AuthState {
   token: string | null;
-};
+}
 
 const TOKEN_KEY = 'auth_token';
 
@@ -34,7 +35,7 @@ export const AuthStore = signalStore(
 
       try {
         const decoded = jwtDecode<RawJwtPayload>(currentToken);
-        const user: CurrentUser = {
+        const user: CurrentUserModel = {
           ...decoded,
           sub: Number(decoded.sub),
         };

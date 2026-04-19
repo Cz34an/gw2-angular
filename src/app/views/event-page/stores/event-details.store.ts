@@ -1,16 +1,29 @@
 import { computed, inject } from '@angular/core';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { tapResponse } from '@ngrx/operators';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { exhaustMap, filter, map, pipe, switchMap, tap } from 'rxjs';
-import { tapResponse } from '@ngrx/operators';
-import { BuildDto, EventControllerService, EventResponseDto, EventSignupDto, SlotDto } from '@/api';
 
-type EventDetailsState = {
+import {
+  BuildDto,
+  EventControllerService,
+  EventResponseDto,
+  EventSignupDto,
+  SlotDto,
+} from '@/api';
+
+interface EventDetailsState {
   eventDetails: EventResponseDto | null;
   selectedFreeSlot: SlotDto | null;
   isLoading: boolean;
   hasError: boolean;
-};
+}
 
 const initialState: EventDetailsState = {
   eventDetails: null,
@@ -29,7 +42,9 @@ export const EventDetailsStore = signalStore(
       if (!details) return [];
 
       const generateBuildKey = (build: BuildDto): string => {
-        const subRolesKey = build.subRoles ? [...build.subRoles].sort().join(',') : 'none';
+        const subRolesKey = build.subRoles
+          ? [...build.subRoles].sort().join(',')
+          : 'none';
         return `${build.baseRole}-${subRolesKey}`;
       };
 
@@ -54,8 +69,10 @@ export const EventDetailsStore = signalStore(
         switchMap((id) => {
           return eventsService.getEvent(Number(id)).pipe(
             tapResponse({
-              next: (eventDetails) => patchState(store, { eventDetails, isLoading: false }),
-              error: () => patchState(store, { isLoading: false, hasError: true }),
+              next: (eventDetails) =>
+                patchState(store, { eventDetails, isLoading: false }),
+              error: () =>
+                patchState(store, { isLoading: false, hasError: true }),
             }),
           );
         }),

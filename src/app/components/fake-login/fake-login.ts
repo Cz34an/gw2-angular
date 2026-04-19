@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { AuthStore } from '@/core/stores/auth-store';
+
+import { AuthStore } from '@/core/stores';
 
 @Component({
   selector: 'app-fake-login',

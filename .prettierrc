@@ -1,6 +1,12 @@
 {
-  "printWidth": 100,
+  "printWidth": 80,
   "singleQuote": true,
+  "singleAttributePerLine": true,
+  "trailingComma": "all",
+  "bracketSameLine": false,
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ],
   "overrides": [
     {
       "files": "*.html",

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { HlmBadge } from '@spartan-ng/helm/badge';
+
 import { BuildDto } from '@/api';
 
 @Component({

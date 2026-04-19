@@ -7,7 +7,7 @@
 }
 
 :host(.empty) {
-  @apply border-dashed border-2 cursor-pointer;
+  @apply cursor-pointer border-2 border-dashed;
 
   &:hover {
     background-color: var(--card-hover);

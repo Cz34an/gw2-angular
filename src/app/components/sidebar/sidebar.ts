@@ -1,18 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
-import { FakeLogin } from '../fake-login/fake-login';
-import { AuthStore } from '@/core/stores/auth-store';
 
-type SidebarItem = {
+import { AuthStore } from '@/core/stores';
+
+import { FakeLogin } from '../fake-login/fake-login';
+
+interface SidebarItem {
   label: string;
   path: string;
   exact?: boolean;
-};
+}
 
 @Component({
   selector: 'app-sidebar',
-  imports: [HlmSidebarImports, RouterLink, RouterLinkActive, FakeLogin],
+  imports: [FakeLogin, HlmSidebarImports, RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })

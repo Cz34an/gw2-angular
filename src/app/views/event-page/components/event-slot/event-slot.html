@@ -3,20 +3,34 @@
 
 @switch (slotType()) {
   @case ('empty') {
-    <div class="border bg-card rounded-md w-10 h-10 flex items-center justify-center">
-      <ng-icon class="icon" hlm name="lucidePlus" />
+    <div
+      class="bg-card flex h-10 w-10 items-center justify-center rounded-md border"
+    >
+      <ng-icon
+        class="icon"
+        hlm
+        name="lucidePlus"
+      />
     </div>
     <div class="flex flex-col gap-1">
-      <span class="text-sm line-clamp-1 break-all">Zapisz się!</span>
+      <span class="line-clamp-1 text-sm break-all">Zapisz się!</span>
       <app-build-badges [build]="b" />
     </div>
   }
   @case ('blocked') {
-    <div class="border bg-card rounded-md w-10 h-10 flex items-center justify-center">
-      <ng-icon class="icon" hlm name="lucideLockKeyhole" />
+    <div
+      class="bg-card flex h-10 w-10 items-center justify-center rounded-md border"
+    >
+      <ng-icon
+        class="icon"
+        hlm
+        name="lucideLockKeyhole"
+      />
     </div>
     <div class="flex flex-col gap-1">
-      <span class="text-sm line-clamp-1 break-all text-disabled">Zablokowane przez organizatora</span>
+      <span class="text-disabled line-clamp-1 text-sm break-all"
+        >Zablokowane przez organizatora</span
+      >
       <app-build-badges [build]="b" />
     </div>
   }
@@ -25,16 +39,33 @@
     @let a = s.actualBuild!;
 
     <hlm-avatar size="lg">
-      <img [src]="p?.avatarUrl" hlmAvatarImage />
+      <img
+        [src]="p?.avatarUrl"
+        alt="A"
+        hlmAvatarImage
+      />
       <span hlmAvatarFallback>{{ getName().charAt(0) | uppercase }}</span>
     </hlm-avatar>
-    <div class="flex flex-col gap-1 flex-1">
-      <span [title]="getName()" class="text-sm line-clamp-1 break-all">{{ getName() }}</span>
+    <div class="flex flex-1 flex-col gap-1">
+      <span
+        [title]="getName()"
+        class="line-clamp-1 text-sm break-all"
+        >{{ getName() }}</span
+      >
       <app-build-badges [build]="a" />
     </div>
     @if (isOccupiedByLoggedUser()) {
-      <button (click)="store.signOutFromEvent()" class="cursor-pointer" hlmBtn size="icon" variant="destructive">
-        <ng-icon hlm name="lucideMinus" />
+      <button
+        (click)="store.signOutFromEvent()"
+        class="cursor-pointer"
+        hlmBtn
+        size="icon"
+        variant="destructive"
+      >
+        <ng-icon
+          hlm
+          name="lucideMinus"
+        />
       </button>
     }
   }

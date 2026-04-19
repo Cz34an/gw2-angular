@@ -1,34 +1,47 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
-import { EventResponseShortDto } from '@/api';
-import { HlmIcon } from '@spartan-ng/helm/icon';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideCalendar, lucideSwords, lucideTimer, lucideUsers } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { DatePipe, UpperCasePipe } from '@angular/common';
-import { HlmProgressImports } from '@spartan-ng/helm/progress';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { DurationPipe } from '@/core/pipes/duration-pipe';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { isFractalCategory, isRaidCategory } from '@/core/utils/category-utils';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import {
+  lucideCalendar,
+  lucideSwords,
+  lucideTimer,
+  lucideUsers,
+} from '@ng-icons/lucide';
+import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { HlmButton } from '@spartan-ng/helm/button';
+import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmProgressImports } from '@spartan-ng/helm/progress';
+
+import { EventResponseShortDto } from '@/api';
+import { DurationPipe } from '@/core/pipes';
+import { isFractalCategory, isRaidCategory } from '@/core/utils';
 
 @Component({
   selector: 'app-event-card',
   imports: [
+    DatePipe,
+    DurationPipe,
+    HlmAvatarImports,
+    HlmBadgeImports,
+    HlmButton,
     HlmCardImports,
     HlmIcon,
-    NgIcon,
-    HlmAvatarImports,
-    UpperCasePipe,
-    DatePipe,
     HlmProgressImports,
-    HlmBadgeImports,
-    DurationPipe,
-    HlmButton,
+    NgIcon,
     RouterLink,
+    UpperCasePipe,
   ],
-  providers: [provideIcons({ lucideSwords, lucideTimer, lucideUsers, lucideCalendar })],
+  providers: [
+    provideIcons({ lucideSwords, lucideTimer, lucideUsers, lucideCalendar }),
+  ],
   hostDirectives: [HlmCard],
   templateUrl: './event-card.html',
   styleUrl: './event-card.scss',
@@ -46,7 +59,11 @@ export class EventCard {
     () => (this.event().occupiedSlotsSize / this.event().slotsSize) * 100,
   );
 
-  protected isRaid = computed(() => isRaidCategory(this.event().category));
+  protected readonly isRaid = computed(() =>
+    isRaidCategory(this.event().category),
+  );
 
-  protected isFractal = computed(() => isFractalCategory(this.event().category));
+  protected readonly isFractal = computed(() =>
+    isFractalCategory(this.event().category),
+  );
 }

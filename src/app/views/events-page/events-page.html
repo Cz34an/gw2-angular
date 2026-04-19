@@ -6,7 +6,11 @@
   } @else if (store.hasError()) {
     <div class="space-y-2">
       <p class="text-red-600">Error</p>
-      <button (click)="store.loadEvents()" class="rounded border px-3 py-1" type="button">
+      <button
+        (click)="store.loadEvents()"
+        class="rounded border px-3 py-1"
+        type="button"
+      >
         Sprobuj ponownie
       </button>
     </div>
@@ -18,6 +22,5 @@
         <app-event-card [event]="event" />
       }
     </div>
-
   }
 </section>

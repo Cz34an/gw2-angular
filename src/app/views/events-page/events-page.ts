@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { EventCard } from './components';
 import { EventsStore } from './stores';
-import { EventCard } from './components/event-card/event-card';
 
 @Component({
   selector: 'app-events-page',
