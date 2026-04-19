@@ -1,0 +1,85 @@
+<hlm-dialog-header>
+  <h3 hlmDialogTitle>Wybierz flex role</h3>
+  <p hlmDialogDescription>Wybierz role na których możesz zagrać.</p>
+</hlm-dialog-header>
+<div class="flex flex-col gap-1">
+  <h4>Wybrana rola</h4>
+  <app-build-badges
+    [build]="slot().requiredBuild"
+    class="mb-1"
+  />
+
+  @if (isGenericBoonRequired()) {
+    <h4>Boon</h4>
+    <div class="flex flex-row items-center gap-1">
+      <button
+        [disabled]="isAlacrityEffectiveBuild()"
+        aria-label="Alacrity"
+        hlmToggle
+        size="sm"
+        [state]="alacrityToggleState()"
+        (stateChange)="onAlacrityToggleSwitch($event)"
+      >
+        A
+      </button>
+      <button
+        [disabled]="isQuicknessEffectiveBuild()"
+        aria-label="Quickness"
+        hlmToggle
+        size="sm"
+        [state]="quicknessToggleState()"
+        (stateChange)="onQuicknessToggleSwitch($event)"
+      >
+        Q
+      </button>
+    </div>
+  }
+
+  <h4>Flex role</h4>
+  <hlm-select-multiple
+    [value]="flexBuilds()"
+    (valueChange)="flexBuilds.set($event ? $event : [])"
+  >
+    <hlm-select-trigger class="w-full">
+      <hlm-select-placeholder>Wybierz role flex</hlm-select-placeholder>
+      <ng-template
+        hlmSelectValues
+        let-values
+      >
+        <hlm-select-values-content>
+          <app-build-badges [build]="values[0]" />
+          @if (values.length > 1) {
+            +{{ values.length - 1 }}
+          }
+        </hlm-select-values-content>
+      </ng-template>
+    </hlm-select-trigger>
+    <hlm-select-content *hlmSelectPortal>
+      <hlm-select-group>
+        @for (item of store.allAvailableBuilds(); track item.key) {
+          <hlm-select-item [value]="item.build">
+            <app-build-badges [build]="item.build" />
+          </hlm-select-item>
+        }
+      </hlm-select-group>
+    </hlm-select-content>
+  </hlm-select-multiple>
+</div>
+
+<hlm-dialog-footer>
+  <button
+    hlmBtn
+    hlmDialogClose
+    variant="outline"
+  >
+    Anuluj
+  </button>
+  <button
+    (click)="onSignUp()"
+    hlmBtn
+    type="submit"
+    [disabled]="!isFormValid()"
+  >
+    Zapisz się
+  </button>
+</hlm-dialog-footer>

@@ -81,18 +81,13 @@ export const EventDetailsStore = signalStore(
     signUpForEvent: rxMethod<{
       id: number;
       eventSignupDto: EventSignupDto;
-      onSuccess?: () => void;
     }>(
       pipe(
-        exhaustMap(({ id, eventSignupDto, onSuccess }) =>
+        exhaustMap(({ id, eventSignupDto }) =>
           eventsService.signUpForEvent(id, eventSignupDto).pipe(
             tapResponse({
               next: (eventDetails) => {
-                patchState(store, { eventDetails });
-
-                if (onSuccess) {
-                  onSuccess();
-                }
+                patchState(store, { eventDetails, selectedFreeSlot: null });
               },
               error: () => console.log('error'),
             }),

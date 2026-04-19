@@ -1,5 +1,5 @@
 @let s = slot();
-@let b = s.requiredBuild;
+@let b = s.effectiveBuild;
 
 @switch (slotType()) {
   @case ('empty') {
