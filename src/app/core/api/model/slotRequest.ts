@@ -13,7 +13,6 @@ export interface SlotRequest {
     subgroup: number;
     requiredBaseRole: SlotRequest.RequiredBaseRoleEnum;
     requiredSubRoles?: Array<SlotRequest.RequiredSubRolesEnum>;
-    count: number;
 }
 export namespace SlotRequest {
     export const RequiredBaseRoleEnum = {

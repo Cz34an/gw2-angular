@@ -15,7 +15,9 @@ export interface SlotDto {
     id: number;
     subgroup: number;
     requiredBuild: BuildDto;
-    actualBuild: BuildDto;
+    effectiveBuild: BuildDto;
+    declaredPrimaryBuild?: BuildDto;
+    actualBuild?: BuildDto;
     player?: UserEventDto;
     flexBuilds?: Array<BuildDto>;
     blocked?: boolean;

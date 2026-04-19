@@ -1,9 +1,9 @@
 import { computed, inject } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { exhaustMap, filter, map, pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
-import { BuildDto, EventControllerService, EventResponseDto, SlotDto } from '@/api';
+import { BuildDto, EventControllerService, EventResponseDto, EventSignupDto, SlotDto } from '@/api';
 
 type EventDetailsState = {
   eventDetails: EventResponseDto | null;
@@ -59,6 +59,42 @@ export const EventDetailsStore = signalStore(
             }),
           );
         }),
+      ),
+    ),
+    signUpForEvent: rxMethod<{
+      id: number;
+      eventSignupDto: EventSignupDto;
+      onSuccess?: () => void;
+    }>(
+      pipe(
+        exhaustMap(({ id, eventSignupDto, onSuccess }) =>
+          eventsService.signUpForEvent(id, eventSignupDto).pipe(
+            tapResponse({
+              next: (eventDetails) => {
+                patchState(store, { eventDetails });
+
+                if (onSuccess) {
+                  onSuccess();
+                }
+              },
+              error: () => console.log('error'),
+            }),
+          ),
+        ),
+      ),
+    ),
+    signOutFromEvent: rxMethod<void>(
+      pipe(
+        map(() => store.eventDetails()),
+        filter((details): details is EventResponseDto => !!details),
+        exhaustMap((details) =>
+          eventsService.signOutForEvent(details.id).pipe(
+            tapResponse({
+              next: (eventDetails) => patchState(store, { eventDetails }),
+              error: () => console.log('error'),
+            }),
+          ),
+        ),
       ),
     ),
     setSelectedFreeSlot: (slot: SlotDto | null) => {

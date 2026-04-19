@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { SlotDto } from '@/api';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideLockKeyhole, lucidePlus } from '@ng-icons/lucide';
+import { lucideLockKeyhole, lucideMinus, lucidePlus } from '@ng-icons/lucide';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { HlmAvatar, HlmAvatarFallback, HlmAvatarImage } from '@spartan-ng/helm/avatar';
 import { UpperCasePipe } from '@angular/common';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { EventDetailsStore } from '../../stores/event-details.store';
 import { BuildBadges } from '../build-badges/build-badges';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CURRENT_USER } from '@/core/tokens/auth-token';
 
 @Component({
   selector: 'app-event-slot',
@@ -18,11 +19,11 @@ import { BuildBadges } from '../build-badges/build-badges';
     HlmAvatarFallback,
     HlmAvatarImage,
     UpperCasePipe,
-    HlmBadgeImports,
     BuildBadges,
+    HlmButtonImports,
   ],
   templateUrl: './event-slot.html',
-  providers: [provideIcons({ lucidePlus, lucideLockKeyhole })],
+  providers: [provideIcons({ lucidePlus, lucideLockKeyhole, lucideMinus })],
   styleUrl: './event-slot.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -56,7 +57,19 @@ export class EventSlot {
 
     return player.gw2AccountName || player.username;
   });
-  private readonly store = inject(EventDetailsStore);
+  protected readonly store = inject(EventDetailsStore);
+  private readonly currentUser = inject(CURRENT_USER);
+
+  protected isOccupiedByLoggedUser = computed(() => {
+    const currentUser = this.currentUser();
+    const player = this.slot().player;
+
+    if (!currentUser || !player) {
+      return false;
+    }
+
+    return player.id === currentUser.sub;
+  });
 
   protected onSlotClick() {
     if (this.isEmpty()) {

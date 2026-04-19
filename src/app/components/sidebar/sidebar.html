@@ -5,18 +5,28 @@
         @for (item of items; track item.path) {
           <li hlmSidebarMenuItem>
             <a
-              hlmSidebarMenuButton
-              [routerLink]="item.path"
-              routerLinkActive
               #rla="routerLinkActive"
-              [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
               [isActive]="rla.isActive"
+              [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+              [routerLink]="item.path"
+              hlmSidebarMenuButton
+              routerLinkActive
             >
               <span>{{ item.label }}</span>
             </a>
           </li>
         }
       </ul>
+    </div>
+    <div hlmSidebarFooter>
+
+      @if (authStore.currentUser()) {
+        <div>
+          Logged user: {{ authStore.currentUser()?.username }}
+        </div>
+
+      }
+      <app-fake-login />
     </div>
   </hlm-sidebar>
   <ng-content />

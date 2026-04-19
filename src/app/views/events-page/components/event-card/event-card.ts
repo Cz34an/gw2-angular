@@ -8,9 +8,10 @@ import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { DatePipe, UpperCasePipe } from '@angular/common';
 import { HlmProgressImports } from '@spartan-ng/helm/progress';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { DurationPipe } from '../../../../core/pipes/duration-pipe';
+import { DurationPipe } from '@/core/pipes/duration-pipe';
 import { HlmButton } from '@spartan-ng/helm/button';
-import { isFractalCategory, isRaidCategory } from '../../../../core/utils/category-utils';
+import { isFractalCategory, isRaidCategory } from '@/core/utils/category-utils';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-event-card',
@@ -25,6 +26,7 @@ import { isFractalCategory, isRaidCategory } from '../../../../core/utils/catego
     HlmBadgeImports,
     DurationPipe,
     HlmButton,
+    RouterLink,
   ],
   providers: [provideIcons({ lucideSwords, lucideTimer, lucideUsers, lucideCalendar })],
   hostDirectives: [HlmCard],

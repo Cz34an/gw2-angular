@@ -1,0 +1,13 @@
+<hlm-select (valueChange)="onUserSelect($event)">
+  <hlm-select-trigger>
+    <hlm-select-value placeholder="User" />
+  </hlm-select-trigger>
+  <hlm-select-content *hlmSelectPortal>
+    <hlm-select-group>
+      <hlm-select-label>User</hlm-select-label>
+      @for (item of arr; track item) {
+        <hlm-select-item [value]="item">User {{ item }}</hlm-select-item>
+      }
+    </hlm-select-group>
+  </hlm-select-content>
+</hlm-select>

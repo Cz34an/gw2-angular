@@ -22,15 +22,20 @@
   }
   @case ('occupied') {
     @let p = s.player!;
-    @let a = s.actualBuild;
+    @let a = s.actualBuild!;
 
     <hlm-avatar size="lg">
       <img [src]="p?.avatarUrl" hlmAvatarImage />
       <span hlmAvatarFallback>{{ getName().charAt(0) | uppercase }}</span>
     </hlm-avatar>
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col gap-1 flex-1">
       <span [title]="getName()" class="text-sm line-clamp-1 break-all">{{ getName() }}</span>
       <app-build-badges [build]="a" />
     </div>
+    @if (isOccupiedByLoggedUser()) {
+      <button (click)="store.signOutFromEvent()" class="cursor-pointer" hlmBtn size="icon" variant="destructive">
+        <ng-icon hlm name="lucideMinus" />
+      </button>
+    }
   }
 }

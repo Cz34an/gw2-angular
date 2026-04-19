@@ -16,6 +16,7 @@
     "paths": {
       "@/api": ["src/app/core/api"],
       "@/api/*": ["src/app/core/api/*"],
+      "@/core/*": ["src/app/core/*"],
       "@spartan-ng/helm/sidebar": ["./src/app/ui/sidebar/src/index.ts"],
       "@spartan-ng/helm/utils": ["./src/app/ui/utils/src/index.ts"],
       "@spartan-ng/helm/button": ["./src/app/ui/button/src/index.ts"],
@@ -30,7 +31,8 @@
       "@spartan-ng/helm/progress": ["./src/app/ui/progress/src/index.ts"],
       "@spartan-ng/helm/badge": ["./src/app/ui/badge/src/index.ts"],
       "@spartan-ng/helm/dialog": ["./src/app/ui/dialog/src/index.ts"],
-      "@spartan-ng/helm/select": ["./src/app/ui/select/src/index.ts"]
+      "@spartan-ng/helm/select": ["./src/app/ui/select/src/index.ts"],
+      "@spartan-ng/helm/toggle": ["./src/app/ui/toggle/src/index.ts"]
     }
   },
   "angularCompilerOptions": {
